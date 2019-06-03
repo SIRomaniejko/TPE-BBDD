@@ -6,7 +6,9 @@ class ConfigApp
     public static $PARAMS = 'params';
     public static $ACTIONS = [
       'superTest' => 'TestController#test',
-      '' => 'PosicionesController#home'
+      '' => 'PosicionesController#home',
+      'posicionesLibres' => 'PosicionesController#getPosicionesLibres',
+      'posicionesOcupadasCliente' => 'PosicionesController#getPosicionesOcupadasCliente'
     ];
 
 }

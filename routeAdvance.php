@@ -8,7 +8,7 @@ define('USERS', HOME."/usuarios");
 define('ERRORTITULO', HOME."/errorFormulario");
 define('404', HOME."/404");
 require_once "config/ConfigApp.php";
-require_once('controller/TestController.php');
+require_once('controller/PosicionesController.php');
 
 function parseURL($url)
 {
@@ -37,7 +37,7 @@ if(isset($_GET['action'])){
             echo $controller->$metodo();
         }
     }else{
-        header(HOME."/404");
+        //header(HOME."/404");
     }
 }
  ?>

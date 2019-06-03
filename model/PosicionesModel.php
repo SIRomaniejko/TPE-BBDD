@@ -14,15 +14,16 @@ class PosicionesModel extends Model{
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
     }
     function getPosicionesOcupadasCliente($id_cliente){
-        $sentencia = $this->db->prepare("SELECT * FROM gr25_cliente c
-        JOIN gr25_alquiler a ON (c.cuit_cuil = a.id_cliente)
+        $sentencia = $this->db->prepare("SELECT nro_posicion, nro_estanteria, nro_fila
+        FROM gr25_alquiler a
         JOIN gr25_alquiler_posiciones ap ON (a.id_alquiler = ap.id_alquiler)
-        WHERE cuit_cuil = ?");
+        WHERE CURRENT_DATE < a.fecha_hasta AND CURRENT_DATE >= a.fecha_desde
+        AND a.id_cliente = ?");
         $sentencia->execute(array($id_cliente));
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
     }
-    function getPosicionesLibre($fecha){
+    function getPosicionesLibres($fecha){
         $sentencia = $this->db->prepare("SELECT * FROM posiciones_libres(?)");
         $sentencia->execute(array($fecha));
         return $sentencia->fetchAll(PDO::FETCH_ASSOC);
